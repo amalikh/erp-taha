@@ -1,0 +1,42 @@
+<mat-dialog-content [formGroup]="currencyForm">
+    <h5 class="modal-title" id="exampleModalLabel">{{modal_title}}</h5>
+    <div class="row">
+        <div class="col-sm-6">
+            <mat-form-field>
+                <mat-label>Currency</mat-label>
+                <mat-select formControlName="Currency" (selectionChange)="currencychange($event.value)">
+                    <mat-option *ngFor="let country of currencydata" [value]="country.name">
+                        {{country.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="col-sm-6">
+            <mat-form-field appearance="outline">
+                <mat-label>Short Name</mat-label>
+                <input readonly formControlName="ShortName" [(ngModel)]="cc" matInput>
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="col-sm-6">
+            <mat-form-field appearance="outline">
+                <mat-label>Symbol</mat-label>
+                <input formControlName="Symbol" readonly [(ngModel)]="symbol" matInput>
+            </mat-form-field>
+        </div>
+        <div class="col-sm-6">
+            <mat-form-field appearance="outline">
+                <mat-label>Exchange Rate</mat-label>
+                <input type="text" formControlName="ExchangeRate" matInput>
+            </mat-form-field>
+        </div>
+    </div>
+
+</mat-dialog-content>
+<mat-dialog-actions align="center">
+    <button mat-raised-button color="primary" (click)="save()" tabindex="1">{{confirmButtonText}}</button>
+    <button mat-raised-button mat-dialog-close tabindex="-1">{{cancelButtonText}}</button>
+</mat-dialog-actions>
